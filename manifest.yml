@@ -1,0 +1,11 @@
+applications:
+- name: demo-hp-api
+  mem: 128M
+  services:
+    ${name}-mongo-db:
+       type: mongodb
+    ${name}-redis-db:
+       type: redis
+  stackato:
+    ignores:
+    - node_modules
