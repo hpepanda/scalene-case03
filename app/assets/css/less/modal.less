@@ -1,0 +1,97 @@
+@import "variables";
+@import "mixins";
+
+.modal-size(){
+  width:558px;
+  height: 405px;
+}
+
+.modal {
+  overflow-y: hidden;
+}
+
+.modal-dialog{
+  .modal-size;
+  margin: auto;
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  padding: 24px;
+}
+
+.modal-header{
+  height:60px;
+  padding: 12px 24px;
+}
+
+.modal-title{
+  color: white;
+  font-family: OpenSansSemibold;
+  font-size: @font-size-large;
+}
+
+.modal-content{
+  border-radius: 0;
+
+  .modal-form{
+    width:368px;
+    margin: auto;
+
+    .form-group h3{
+      width: 132px;
+    }
+
+    input{
+      .form-input;
+    }
+
+    .form-group{
+      margin-bottom: 19px;
+    }
+
+    .date{
+      .date-field;
+      .input-text-size;
+      border: none;
+      display: inline-block;
+      line-height: 2;
+    }
+
+    .date, .amount{
+      width: 129px;
+    }
+
+    .vendor{
+      width: 220px;
+    }
+
+    span.upload{
+      font-size: 16px;
+      text-decoration: underline;
+      font-family: OpenSansLight;
+      color: black;
+      margin-right: 5px;
+      max-width: 180px;
+      display: inline-block;
+      text-overflow :ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .receipt-invalid{
+      color: @red;
+      margin-top: -20px;
+      margin-bottom: 0;
+
+      p{
+        margin-bottom: 2px;
+      }
+    }
+
+  }
+
+  .hp-btn{
+    .button-base;
+    width: 88px;
+  }
+}
+

@@ -1,0 +1,53 @@
+<!doctype html>
+<html ng-app="hpsa-client" lang="en">
+<head>
+    <title>Scalene - Expense Management</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="assets/css/app.css"/>
+
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="shared/utilities/route-styles.js"></script>
+
+    <script src="app.module.js"></script>
+    <script src="app.routes.js"></script>
+    <script src="app.settings.js"></script>
+    <script src="app.fakeDataSource.js"></script>
+
+    <script src="components/expenses/expensesController.js"></script>
+    <script src="components/expenses/expensesService.js"></script>
+    <script src="components/expenses/expensesFilterService.js"></script>
+    <script src="components/expense-edit-dialog/expenseDialogController.js"></script>
+    <script src="components/receipt-view-dialog/receiptModalController.js"></script>
+
+    <script src="components/reports/reportsController.js"></script>
+    <script src="components/reports/reportsService.js"></script>
+    <script src="components/report-edit-page/newReportController.js"></script>
+    <script src="components/report-view-page/viewReportController.js"></script>
+
+    <script src="shared/expenses-list-directive/expensesListDirective.js"></script>
+    <script src="shared/report-details-directive/reportDetailsDirective.js"></script>
+
+    <script src="shared/request-info/requestProfilerController.js"></script>
+    <script src="shared/request-info/requestProfiler.js"></script>
+
+    <script src="shared/file-uploader/fileUploaderValidators.js"></script>
+    <script src="shared/file-uploader/receiptUploadService.js"></script>
+    <script src="shared/file-uploader/fileUploaderDirective.js"></script>
+    <script src="shared/hp-pagination/hpPagination.js"></script>
+
+    <script src="shared/utilities/observableService.js"></script>
+    <script src="shared/utilities/urlParser.js"></script>
+    <script src="shared/utilities/expenseModalProvider.js"></script>
+
+</head>
+<body ng-class="{'expense-theme': expenseTheme, 'report-theme': !expenseTheme}">
+    <header ng-include="'shared/header/header.html'"></header>
+    <div ng-view class="content"></div>
+    <footer class="footer" ng-include="'shared/footer/footer.html'"></footer>
+</body>
+</html>

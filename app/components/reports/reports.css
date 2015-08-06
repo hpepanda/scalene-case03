@@ -1,0 +1,20 @@
+table.reports-table {
+    margin: 80px auto 0 auto;
+    width: 816px;
+}
+
+table.reports-table td.date{
+    width:136px;
+}
+
+table.reports-table td.reportName{
+    width: 410px;
+}
+
+table.reports-table td.status{
+    width: 122px;
+}
+
+table.reports-table td.action{
+    width: 100px;
+}

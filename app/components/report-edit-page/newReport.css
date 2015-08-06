@@ -1,0 +1,25 @@
+#expenses-on-report table.custom-sizing td.date,
+#expenses-on-report td.category,
+{
+    width:108px
+}
+
+#expenses-on-report td.vendor{
+    width: 176px;
+}
+
+#expenses-on-report td.amount{
+    width: 100px;
+}
+
+#expenses-on-report td.receipt{
+    width: 94px;
+}
+
+#expenses-on-report td.action{
+    width: 78px;
+}
+
+#expenses-on-report td.empty-col-first{
+    width:22px;
+}

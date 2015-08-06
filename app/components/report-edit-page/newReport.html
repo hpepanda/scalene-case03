@@ -1,0 +1,41 @@
+<div id="new-report-page">
+    <div class="heading">
+        <div class="container">
+            <div class="row vertical-align">
+                <span class="col-md-6">{{::title}}</span>
+
+                <div class="col-md-6">
+                    <div class="float-right">
+                        <span class="total-amount">Total: {{report.total | currency : '$'}}</span>
+                        <button class="hp-btn" ng-click="submitReport()">Submit Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-2">
+                <hp-report-details editable="true" report="report" valid="isReportValid"></hp-report-details>
+            </aside>
+            <div class="col-md10 col-md-offset-2 main">
+                <h3>Expenses on Report</h3>
+                <div ng-if="expenses.length>0">
+                    <hp-expenses-list mode="'onReport'" expenses-src="expenses" pages="submittedPagesCount" id="'list-on-report'"></hp-expenses-list>
+                </div>
+                <div class="no-table-data" ng-if="expenses.length==0">
+                    No expenses available for this report
+                </div>
+                <h3>Unsubmitted Expenses | <a ng-click="openCreateExpenseModal()">Add New</a></h3>
+                <div ng-if="unsubmittedExpenses.length>0">
+                    <hp-expenses-list expenses-src="unsubmittedExpenses" pages="unsubmittedPagesCount" id="'unsubmitted'"></hp-expenses-list>
+                </div>
+                <div class="no-table-data" ng-if="unsubmittedExpenses.length==0">
+                    No unsubmitted expenses available
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>

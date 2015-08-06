@@ -1,0 +1,26 @@
+.table td.date,
+table.reports-table td.category,
+table.reports-table td.personal,
+{
+    width:108px;
+}
+
+table.reports-table td.vendor{
+    width: 180px;
+}
+
+table.reports-table td.amount{
+    width: 97px;
+}
+
+table.reports-table td.receipt{
+    width: 93px;
+}
+
+table.reports-table td.action{
+    width: 86px;
+}
+
+table.reports-table td.selectBox{
+    width: 46px;
+}

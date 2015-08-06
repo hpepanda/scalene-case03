@@ -1,0 +1,12 @@
+<form novalidate name="reportForm">
+<h3>Report Name</h3>
+<input type="text" ng-model="report.name" name="reportName" required/>
+<br/>
+<h3>Purpose</h3>
+<textarea ng-model="report.purpose" placeholder="Description"></textarea>
+<br/>
+<h3>Approver</h3>
+<input type="text" ng-model="report.approver" placeholder="David Bishop"/>
+<br/>
+<h3>CC</h3>
+<input type="text" ng-model="report.cc"></form>

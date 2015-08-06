@@ -1,0 +1,51 @@
+<div id="expenses-page">
+    <div class="heading">
+        <div class="container">
+            <div class="row vertical-align">
+                <span class="col-md-6">Expenses</span>
+
+                <div class="col-md-6">
+                    <button class="hp-btn float-right" ng-click="openNewExpenseModal()">New Expense</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-2 filter">
+                <h3>Filter</h3>
+
+                <div class="date-filter vertical-align">
+                    <a datepicker-popup ng-model="expFilter.from.value"
+                       ng-click="expFilter.from.opened=true"
+                       is-open="expFilter.from.opened"
+                       show-weeks="false"
+                       show-button-bar="false">{{expFilter.from.value | date: 'MM/dd/yyyy'}}</a><span>&nbsp-&nbsp</span>
+
+                    <a datepicker-popup ng-model="expFilter.to.value"
+                       ng-click="expFilter.to.opened=true"
+                       is-open="expFilter.to.opened"
+                       show-weeks="false"
+                       show-button-bar="false">{{expFilter.to.value | date: 'MM/dd/yyyy'}}</a>
+                </div>
+                <select class="dropdown" ng-model="category"
+                        ng-options="opt for opt in categories">
+                    <option value="">All Categories</option>
+                </select>
+            </aside>
+
+
+            <div class="col-md10 col-md-offset-2 main">
+                <h3>Unsubmitted expenses</h3>
+                <div ng-if="expenses.length>0">
+                    <hp-expenses-list expenses-src="expenses" pages="totalPages" add-to-report-caption="'Add to New Report'"></hp-expenses-list>
+                </div>
+                <div ng-if="expenses.length==0" class="no-table-data">
+                    No unsubmitted expenses available
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>

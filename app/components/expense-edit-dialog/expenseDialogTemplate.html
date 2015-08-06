@@ -1,0 +1,88 @@
+<div class="modal-header">
+    <span class="modal-title">{{::title}}</span>
+
+    <div class="float-right">
+        <a ng-click="close()"><img src="assets/img/close.png"></a>
+    </div>
+</div>
+<div class="modal-body">
+    <form novalidate class="modal-form form-horizontal" name="expenseForm">
+        <div class="form-group">
+            <h3 class="col-sm-1">Date</h3>
+
+            <div class="col-sm-8 vertical-align date-filter">
+                    <span class="date">
+                        <a datepicker-popup ng-model="expense.date"
+                           ng-click="datepicker.opened=true"
+                           is-open="datepicker.opened"
+                           show-weeks="false"
+                           show-button-bar="false"
+                           max-date="maxDate">{{expense.date | date: 'MM/dd/yyyy'}}</a>
+                    </span>
+                <img src="assets/img/icon_data.png" alt="date"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h3 class="col-sm-1">Category</h3>
+
+            <div class="col-sm-8">
+                <select class="dropdown category"
+                        ng-model="expense.category"
+                        ng-options="opt for opt in categories"
+                        required>
+                    <option value="">Select</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h3 class="col-sm-1">Vendor</h3>
+
+            <div class="col-sm-8">
+                <input class="vendor"
+                       ng-model="expense.vendor"
+                       required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h3 div class="col-sm-1">Amount, $</h3>
+
+            <div class="col-sm-8">
+                <input class="amount"
+                       ng-model="expense.amount"
+                       required
+                       pattern="[0-9]+([,\.][0-9]+)?"
+                       placeholder="0"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <h3 class="col-sm-1">Receipt</h3>
+
+            <div class="col-sm-8">
+                <hp-file-uploader name="filePicker" ng-model="receiptRaw" file-size="10" img-src="'assets/img/icon_upload.png'" image>
+                    <div class="vertical-align">
+                        <span class="upload">{{uploadCaption}}</span>
+                        <img src="assets/img/icon_upload.png" alt="upload"/>
+                    </div>
+                </hp-file-uploader>
+            </div>
+        </div>
+        <div class="form-group receipt-invalid">
+            <h3 class="col-sm-1"></h3>
+            <div class="col-sm-8">
+                <p ng-show="expenseForm.filePicker.$error.image && expenseForm.filePicker.$dirty">Invalid type</p>
+                <p ng-show="expenseForm.filePicker.$error.fileSize">Max size (10Mb) exceeded</p>
+                <p ng-show="submitFailedMessage">{{submitFailedMessage}}</p>
+            </div>
+        </div>
+
+    </form>
+        <button class="hp-btn float-right" ng-click="save()" ng-disabled="expenseForm.$invalid">Save</button>
+    <div class="clear"></div>
+</div>
+
+

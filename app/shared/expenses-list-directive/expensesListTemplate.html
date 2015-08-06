@@ -1,0 +1,48 @@
+    <table st-table="expenses" st-safe-src="expensesSrc" class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Vendor</th>
+            <th>Amount</th>
+            <th>Receipt</th>
+            <th ng-show="selectable">Personal</th>
+            <th ng-show="editable">Action</th>
+            <th ng-show="selectable"><input type="checkbox" class="custom-checkbox" ng-click="toggleSelectionForAll()"
+                                            id="allChecked-{{randomId}}" ng-model="allChecked"/>
+                <label for="allChecked-{{randomId}}"/></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody ng-show="!busy">
+        <tr ng-repeat="item in expenses">
+            <td class="empty-col-first"></td>
+            <td class="date">{{item.date | date}}</td>
+            <td class="category">{{item.category}}</td>
+            <td class="vendor">{{item.vendor}}</td>
+            <td class="amount">{{item.amount | currency: "$"}}</td>
+            <td class="receiptLink"><a ng-click="showReceiptDialog(item)" target="_blank"><img
+                    src="../../assets/img/icon_view.png" alt="view"/></a></td>
+            <td class="personal" ng-show="selectable">
+                <input type="checkbox" ng-model="item.personal" id="personal-{{item.expenseId}}" class="custom-checkbox"
+                       ng-change="setPersonal(item)"/><label for="personal-{{item.expenseId}}"></label></td>
+            <td class="editLink" ng-show="editable">
+                <a ng-click="editExpense(item)"><img src="../../assets/img/icon_edit.png"/></a>
+            </td>
+            <td ng-if="selectable"><input type="checkbox" ng-model="item.checked" ng-change="expenseSelected()"
+                                          ng-disabled="item.personal" id="select-{{item.expenseId}}"
+                                          class="custom-checkbox"/><label for="select-{{item.expenseId}}"/></td>
+            <td class="empty-col-last"></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr>
+            <td colspan="8" ng-show="busy">Loading...</td>
+        </tr>
+        </tbody>
+    </table>
+    <hp-pagination count="pages" changed="pageChanged" related-table="id"></hp-pagination>
+    <button ng-if="selectable" class="hp-btn submit-expenses-btn" ng-click="addToReport()"
+            ng-disabled="!hasSelectedItems">{{::addToReportCaption}}
+    </button>

@@ -1,0 +1,47 @@
+<div id="reports-page">
+
+    <div class="heading">
+        <div class="container">
+            <div class="row vertical-align">
+                <span class="col-md-6">Reports</span>
+
+                <div class="col-md-6">
+                    <button class="float-right hp-btn" ng-click="redirectToNewReport()">New Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container main">
+        <table st-table="reports" class="table reports-table" st-pipe="updateReports">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Report Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody ng-show="!busy">
+            <tr ng-repeat="item in reports">
+                <td class="date">{{item.date | date: 'MM/dd/yyyy'}}</td>
+                <td class="reportName">{{item.name}}</td>
+                <td class="status">{{item.status}}</td>
+                <td class="action"><a href="#/{{item.isReadOnly?'viewReport':'editReport'}}/{{item.reportId}}">
+                    <img src="assets/img/icon_view.png" alt="view" ng-show="item.isReadOnly"/>
+                    <img src="assets/img/icon_edit.png" alt="edit" ng-show="!item.isReadOnly"/></a></td>
+            </tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td colspan="4" ng-show="busy">Loading...</td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td st-pagination="" st-items-by-page="itemsPerPage" colspan="4" class="text-center"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

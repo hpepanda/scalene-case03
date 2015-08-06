@@ -1,0 +1,346 @@
+@import url('../../../bower_components/bootstrap/less/bootstrap');
+@import "variables";
+@import "mixins";
+@import "modal";
+@import "nav-menu";
+@import "user-info";
+@import "receipt-modal";
+
+html{
+  font-family: OpenSansRegular;
+  overflow-y: auto;
+}
+
+*{
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+*:focus{
+  outline: none;
+}
+
+input, textarea{
+  -webkit-user-select: text;
+  -ms-user-select: text;
+}
+
+/*Base layout*/
+.container{
+  width: 1110px;
+}
+
+header{
+  .fixed-full-width-top(@header-height);
+  background-color: @body-bg;
+  z-index: 10;
+
+  .row{
+    margin-top:15px;//todo - remove hardcode
+  }
+}
+
+.content .heading{
+  .fixed-full-width-top(@content-heading-height, @header-height);
+  z-index:5;
+}
+
+.content aside{
+  .fixed-full-height(@header-height + @content-heading-height, @footer-height);
+}
+
+footer{
+  .fixed-full-width-bottom(@footer-height);
+  background-color: @bg-gray-lighter;
+  height:@footer-height;
+  z-index: 10;
+}
+
+/*Shared elements*/
+
+.content .hp-btn{
+  .button-base;
+  width: 170px;
+}
+
+.content hp-expenses-list .hp-btn:disabled,
+.content hp-expenses-list .hp-btn:hover:disabled,
+.modal-content .hp-btn:disabled,
+.modal-content .hp-btn:hover:disabled{
+  background-color: @btn-disabled-bg;
+  color: @btn-disabled-color;
+}
+
+.content .heading span{
+  font-size: @font-size-xl;
+  color: white;
+  font-family: OpenSansLight;
+}
+
+.content aside
+{
+  background-color: @bg-gray;
+  width: 190px;
+  padding: 16px 11px;
+
+  input, textarea, select{
+    background-color: @bg-gray;
+  }
+}
+
+.content .main{
+  padding-top:@header-height + @content-heading-height;
+  padding-bottom: @footer-height;
+}
+
+aside h3,
+.modal-form h3{
+  .light-black-text;
+  font-size: @font-size-large;
+  margin:0;
+}
+
+aside h4{
+  .light-black-text;
+  font-size: @font-size-base;
+  margin-top: 12px;
+}
+
+aside input[type='text']{
+  .form-input;
+  .input-margin;
+}
+
+aside textarea{
+  .form-input;
+  .input-margin;
+  height: 150px;//236
+}
+
+.content .main h3{
+  font-family: OpenSansSemibold;
+  font-size: @font-size-large;
+  margin:34px 0 12px 22px;
+
+  a{
+    .light-black-text;
+    text-decoration: underline;
+  }
+}
+
+table th{
+  .light-black-text;
+  font-size: @font-size-large;
+  font-weight: normal;
+}
+
+table td{
+  .light-black-text;
+  font-size:@font-size-base;
+}
+
+.content .table > * > tr > td,
+.content .table > * > tr > th{
+  border: none;
+  padding: 10px 4px;
+}
+
+a{
+  cursor: pointer;
+}
+
+.date-filter{
+  .hp-date-picker;
+}
+
+/*Color schemes*/
+.expense-theme{
+
+  .heading,
+  .hp-btn,
+  .modal-header,
+  .date-filter .btn-info{
+    background-color:@yellow;
+  }
+
+  .hp-btn:hover,
+  .date-filter .btn-info:hover,
+  .btn-default:focus{
+    background-color:@yellow-hover;
+  }
+
+  .table > thead > tr > th{
+    .bottom-border(3px, @yellow);
+  }
+
+  .navbar a.expenses{
+    .bottom-border(2px, @yellow);
+  }
+
+  .custom-checkbox:checked + label:after{
+    color: @yellow;
+  }
+}
+
+.report-theme{
+
+  .heading,
+  .hp-btn,
+  .modal-header,
+  .date-filter .btn-info{
+    background-color: @green;
+  }
+
+  .table > thead > tr > th{
+    .bottom-border(3px, @green);
+  }
+
+  .hp-btn:hover,
+  .date-filter .btn-info:hover,
+  .btn-default:focus{
+    background-color:@green-hover;
+  }
+
+  .navbar a.reports{
+    .bottom-border(2px, @green);
+  }
+
+  .custom-checkbox:checked + label:after{
+    color: @green;
+  }
+}
+
+.filter .date-filter{
+  .input-text-size;
+  .input-margin;
+  .date-field;
+}
+
+.vertical-align{
+  display: flex;
+  align-items: center;
+}
+
+.align-right{
+  text-align: right;
+}
+
+.float-right{
+  float: right;
+}
+
+
+footer p{
+  font-family: OpenSansLight;
+}
+
+.footer-content{
+  display:table;
+  text-align: center;
+  height: 100%;
+
+  p{
+    display:table-cell;
+    vertical-align:middle;
+  }
+}
+
+.heading div span.total-amount{
+  font-family: OpenSansSemibold;
+  font-size: 22px;
+  margin-right: 16px;
+}
+
+.custom-checkbox {
+  display: none;
+}
+
+.custom-checkbox + label {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 9px;
+  border-radius: 0px;
+  display: inline-block;
+  position: relative;
+}
+
+.custom-checkbox:checked + label {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  color: #99a1a7;
+}
+
+.custom-checkbox:disabled + label {
+  background-color: #E1E1E1;
+  border: 1px solid #000000;
+  color: #99a1a7;
+}
+
+.custom-checkbox:checked + label:after {
+  content: 'L';
+  font-size: 22px;
+  position: absolute;
+  top: -8px;
+  left: 3px;
+  font-family: arial;
+  -ms-transform: scaleX(-1) rotate(-35deg); /* IE 9 */
+  -webkit-transform: scaleX(-1) rotate(-35deg); /* Chrome, Safari, Opera */
+  transform: scaleX(-1) rotate(-35deg);
+}
+
+hp-expenses-list .table{
+  margin-bottom: 20px;
+}
+
+hp-pagination{
+  display: inline-block;
+  width: 33%;
+  margin-left: 33%;
+  text-align: center;
+
+  .pagination{
+    margin-top: 0;
+  }
+}
+
+.clear{
+  clear: both;
+}
+
+.submit-expenses-btn{
+  .float-right;
+  margin-bottom: 20px;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched{
+  border-color:@red;
+}
+
+.file-upload{
+  position: relative;
+  overflow: hidden;
+
+  input[type=file]{
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    opacity: 0;
+  }
+}
+
+.no-table-data{
+  .light-black-text;
+  font-size: @font-size-large;
+  font-weight: normal;
+  margin: 20px;
+}
+
+#request-info{
+  color:@gray;
+  p{
+    margin-bottom: 5px;
+  }
+}
+

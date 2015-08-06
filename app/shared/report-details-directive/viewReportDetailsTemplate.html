@@ -1,0 +1,10 @@
+<h3>Report Name</h3>
+<h4>{{report.name}}</h4>
+<div ng-show="report.purpose">
+<h3>Purpose</h3>
+<h4>{{report.purpose}}</h4></div>
+<div ng-show="report.approver">
+<h3>Approver</h3>
+<h4>{{report.approver}}</h4></div>
+<h3>Date</h3>
+<h4>{{report.date | date: 'MM/dd/yyyy'}}</h4>

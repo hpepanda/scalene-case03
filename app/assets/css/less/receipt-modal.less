@@ -1,0 +1,67 @@
+@import "modal";
+
+#receipt-modal .content{
+  height: 346px;
+}
+
+#receipt-modal .receipt-image-container{
+  float:left;
+  margin-right: 24px;
+  position: relative;
+}
+
+#receipt-modal .receipt-image{
+  width: 210px;
+  height: 298px;
+}
+
+#receipt-modal .receipt-image-container button{
+  opacity: 0.7;
+  border: none;
+}
+
+#receipt-modal .update-button{
+  height: 44px;
+  width: 124px;
+  display: block;
+  background: #000000;
+  position: absolute;
+  margin: auto;
+  padding: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 20px;
+  vertical-align: middle;
+  span{
+    padding-left: 6px;
+    vertical-align: middle;
+    color: #ffffff;
+    font-family: OpenSansLight;
+    font-size: 18px;
+    font-weight: normal;
+  }
+}
+
+#receipt-modal h3{
+  padding-bottom: 24px;
+  font-size: 18px;
+  padding-top: 0;
+}
+
+#receipt-modal .list-header-date {
+  padding-bottom: 40px;
+}
+
+#receipt-modal .save-button{
+  position: absolute;
+  bottom: 24px;
+  right: 24px
+}
+
+.view-receipt-invalid{
+  color: @red;
+  font-size: 14px;
+}
+

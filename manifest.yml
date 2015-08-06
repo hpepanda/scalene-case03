@@ -1,0 +1,7 @@
+applications:
+- name: demo-hp-client
+  mem: 128M
+  services:
+  stackato:
+    ignores:
+    - node_modules

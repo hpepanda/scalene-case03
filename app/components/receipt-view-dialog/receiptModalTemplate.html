@@ -1,0 +1,41 @@
+<div id="receipt-modal">
+    <div class="modal-header">
+        <span class="modal-title">Receipt</span>
+
+        <div class="float-right">
+            <a ng-click="close()"><img src="assets/img/close.png"></a>
+        </div>
+    </div>
+    <div class="modal-body content" >
+        <div class="receipt-image-container">
+            <img class="receipt-image" ng-src="{{receiptImg}}"/>
+            <form novalidate name="uploadReceiptForm">
+
+            <button class="update-button">
+                <hp-file-uploader ng-model="receiptRaw" file-size="10" name="receipt" image>
+                    <div>
+                        <img src="assets/img/icon_upload_update.png" alt="receipt" />
+                        <span >Update</span>
+                    </div>
+                </hp-file-uploader>
+            </button>
+            </form>
+        </div>
+
+        <div class="modal-form">
+            <h3 class="list-header-date">{{expense.date | date}}</h3>
+            <h3>{{expense.category}}</h3>
+            <h3>{{expense.vendor}}</h3>
+            <h3>{{expense.amount| currency: "$"}}</h3>
+            <div class="view-receipt-invalid">
+                <p ng-show="uploadReceiptForm.receipt.$error.image && uploadReceiptForm.receipt.$dirty">Image required</p>
+                <p ng-show="uploadReceiptForm.receipt.$error.fileSize">Max size (10Mb) exceeded</p>
+                <p ng-show="serverErrorOccured">Upload failed</p>
+            </div>
+
+            <div class="save-button" >
+                <button class="hp-btn" ng-click="save()" ng-disabled="uploadReceiptForm.receipt.$invalid" >Save</button>
+            </div>
+        </div>
+    </div>
+</div>

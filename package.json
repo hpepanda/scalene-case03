@@ -1,0 +1,17 @@
+{
+  "name": "hpsa-client",
+  "description": "HPSA Demo.Client",
+  "private": true,
+  "version": "0.0.4",
+  "dependencies": {
+	"http-server": "^0.8.0",
+	"bower": "^1.4.1",
+	"shelljs": "^0.2.6",
+    "less": "^2.5.1"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "http-server ./app -a 0.0.0.0 -d True -c-1",
+	"update-index-async": "node -e \"require('shelljs/global'); sed('-i', /\\/\\/@@NG_LOADER_START@@[\\s\\S]*\\/\\/@@NG_LOADER_END@@/, '//@@NG_LOADER_START@@\\n' + sed(/sourceMappingURL=angular-loader.min.js.map/,'sourceMappingURL=bower_components/angular-loader/angular-loader.min.js.map','app/bower_components/angular-loader/angular-loader.min.js') + '\\n//@@NG_LOADER_END@@', 'app/index-async.html');\""
+  }
+}

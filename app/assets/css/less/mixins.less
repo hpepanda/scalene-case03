@@ -1,0 +1,88 @@
+@import url('../../../bower_components/bootstrap/less/bootstrap');
+@import "variables";
+
+.fixed(){
+  position:fixed;
+}
+
+.fixed-full-width(@left: 0, @right:0){
+  .fixed;
+  left: @left;
+  right: @right;
+}
+
+.fixed-full-height(@top:0, @bottom:0){
+  .fixed;
+  top: @top;
+  bottom: @bottom;
+}
+
+.fixed-full-width-top(@height:0, @top:0){
+  .fixed-full-width;
+  top:@top;
+  height: @height;
+}
+
+.fixed-full-width-bottom(@height:0, @bottom:0){
+  .fixed-full-width;
+  bottom:@bottom;
+  height: @height;
+}
+
+.light-black-text{
+  font-family: OpenSansLight;
+  color: black;
+}
+
+.bottom-border(@size, @color){
+  border-bottom: @size solid @color;
+}
+
+.input-text-size(){
+  width: 166px;
+  height: 30px;
+}
+
+.input-margin(){
+  margin-top:12px;
+  margin-bottom: 16px;
+}
+
+.form-input,
+select.dropdown{
+  .input-text-size;
+  font-family: OpenSansLight;
+  border: 1px solid black;
+  font-size: @font-size-base;
+  padding-left:4px;
+}
+
+.date-field(){
+  background-color: @bg-gray-darker;
+  padding-left: 4px;
+  a, span{
+    .light-black-text;
+  }
+}
+
+.button-base{
+  height: @button-height;
+  font-size: @font-size-medium;
+  color: white;
+  border: 1px solid white;
+}
+
+.hp-date-picker{
+  ul{
+    padding: 4px;
+
+    small{
+      font-size: @font-size-base;
+    }
+
+    .btn-default:focus,
+    .btn-info .text-info{
+      color:white;
+    }
+  }
+}
