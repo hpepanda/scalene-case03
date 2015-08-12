@@ -46,7 +46,9 @@ angular.module('hpsa-client')
         $scope.save = function(){
             uploadImg().
                 then(function(){
-                    return ExpensesService.save($scope.expense);
+                    var expense = $scope.expense;
+                    expense.amount = expense.amount.replace(',', '');
+                    return ExpensesService.save(expense);
                 }).
                 then(function(){
                     console.log("save receipt succeed");
