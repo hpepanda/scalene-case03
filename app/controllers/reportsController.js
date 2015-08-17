@@ -49,23 +49,29 @@ exports.update = function (req, res, next) {
 };
 
 var createReportIfNotExist = function (reportId, callback) {
-    ReportsModel.findById(reportId, function (err, report) {
-        if (report) {
-            callback(null, report._id);
-        } else if (err) {
-            callback(err);
-        } else {
-            var report = new ReportsModel({date: new Date()});
+    var notExists = false;
+    if(reportId)    {
+        ReportsModel.findById(reportId, function (err, report) {
+            if (report) {
+                callback(null, report.id);
+            } else if (err) {
+                callback(err);
+            } else {
+                notExists = true;
+            }
+        });
+    }
+    if(!reportId || notExists){
+        var report = new ReportsModel({date: new Date()});
 
-            report.save(function (err, newReport) {
-                if (!err) {
-                    callback(null, newReport._id);
-                } else {
-                    callback(err);
-                }
-            });
-        }
-    });
+        report.save(function (err, newReport) {
+            if (!err) {
+                callback(null, newReport.id);
+            } else {
+                callback(err);
+            }
+        });
+    }
 };
 
 var calculateTotal = function (reportId, callback) {
@@ -114,7 +120,7 @@ exports.assignExpenses = function (req, res, next) {
 
 exports.findById = function (req, res, next) {
     redis.restoreFromCache(req, res, function () {
-        ReportsModel.findOne({'_id': req.query.reportId}).exec(function (err, report) {
+        ReportsModel.findById(req.query.reportId).exec(function (err, report) {
             if (!err && report) {
                 report = report.toClient();
                 calculateTotal(report.reportId, function (totalError, totalCount) {
