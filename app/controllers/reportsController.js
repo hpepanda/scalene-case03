@@ -99,6 +99,8 @@ exports.assignExpenses = function (req, res, next) {
                 if (!err) {
                     res.status(200);
                     res.send({reportId: reportId});
+                    redis.delWildcard("/expenses*");
+
                 } else {
                     console.log(err);
                     next(new Error(err));

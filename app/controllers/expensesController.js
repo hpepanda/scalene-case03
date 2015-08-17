@@ -73,7 +73,7 @@ var parseFindInputParameters = function (reqQuery) {
         filter.category = reqQuery.category;
     }
 
-    filter.reportId = reqQuery.reportId;
+    filter.reportId = reqQuery.reportId || {$exists: false};
 
     return filter;
 };

@@ -52,3 +52,11 @@ exports.restoreFromCache = function (req, res, callback) {
         }
     });
 };
+
+exports.delWildcard = function(key, callback){
+    redisClient.keys(key, function(err, rows){
+        rows.forEach(function(r){
+            redisClient.del(r);
+        });
+    });
+};
