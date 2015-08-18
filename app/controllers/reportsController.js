@@ -40,8 +40,11 @@ exports.update = function (req, res, next) {
             }
         }, {runValidators: true}, function (err) {
             if (!err) {
-                res.status(204);
-                res.send();
+                redis.deleteKey("/reports/getById?reportId="+req.body.reportId, function(){
+                    res.status(204);
+                    res.send();
+                });
+
             } else {
                 next(new Error(err));
             }
@@ -103,10 +106,10 @@ exports.assignExpenses = function (req, res, next) {
             var options = {multi: true};
             ExpensesModel.update(conditions, update, options, function (err) {
                 if (!err) {
-                    res.status(200);
-                    res.send({reportId: reportId});
-                    redis.delWildcard("/expenses*");
-
+                    redis.delWildcard("/expenses*", function(){
+                        res.status(200);
+                        res.send({reportId: reportId});
+                    });
                 } else {
                     console.log(err);
                     next(new Error(err));
@@ -208,7 +211,6 @@ var deleteForeignKey = function(condition){
 
 var remove = function (id, callback) {
     deleteForeignKey({ reportId: id });
-
     ReportsModel.find({ _id: id })
         .remove(function(err){
             callback(err, "Report removed: " + id);

@@ -20,7 +20,9 @@ exports.create = function (req, res, next) {
 
     expense.save(function (err) {
         if (!err) {
-            res.send(expense);
+            redis.delWildcard("/expenses*", function(){
+                res.send(expense);
+            });
         } else {
             next(new Error(err));
         }

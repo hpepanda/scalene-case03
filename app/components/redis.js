@@ -58,5 +58,11 @@ exports.delWildcard = function(key, callback){
         rows.forEach(function(r){
             redisClient.del(r);
         });
+        callback();
     });
+};
+
+exports.deleteKey = function(key, callback){
+    redisClient.del(key);
+    callback();
 };
