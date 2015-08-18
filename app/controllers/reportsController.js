@@ -20,7 +20,9 @@ exports.create = function (req, res, next) {
 
     report.save(function (err, newReport) {
         if (!err) {
-            res.send({reportId: newReport._id});
+            redis.delWildcard("/reports?count*", function(){
+                res.send({reportId: newReport._id});
+            });
         } else {
             next(new Error(err));
         }
