@@ -48,7 +48,9 @@ angular.module('hpsa-client')
             uploadImg().
                 then(function(){
                     expense = angular.copy($scope.expense);
-                    expense.amount = parseFloat(expense.amount.replace(',', ''));
+                    if(typeof expense.amount == "string") {
+                        expense.amount = parseFloat(expense.amount.replace(',', ''));
+                    }
                     return ExpensesService.save(expense);
                 }).
                 then(function(){
