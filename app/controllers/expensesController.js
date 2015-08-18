@@ -103,28 +103,35 @@ exports.update = function (req, res, next) {
         });
 };
 
-exports.remove = function (req, res, next) {
-    ExpensesModel.find({ _id: req.query.expenseId }).remove(function (err) {
-            if (!err) {
-                res.status(204);
-                res.send();
-            } else {
-                next(new Error(err));
-            }
+var remove = function (id, callback) {
+    ExpensesModel.find({ _id: id })
+        .remove(function(err){
+            callback(err, "Expense removed: " + id);
         });
 };
 
-/**
- * clear database
- */
-exports.clearDb = function (req, res, next) {
-    ExpensesModel.remove({}, function (err) {
-        if (!err) {
-            console.log('collection removed');
-            res.send("ok");
-        }
-        else {
-            next(new Error(err));
-        }
+var removeAll = function(callback){
+    ExpensesModel.remove({}, function(err){
+        callback(err, "Expenses collection removed");
     });
+};
+
+exports.delete = function(req, res, next){
+
+   var callback = function(err, msg){
+       if (!err) {
+           console.log(msg);
+           res.status(204);
+           res.send();
+       } else {
+           next(new Error(err));
+       }
+   };
+
+    if(req.query.id){
+        remove(req.query.id, callback);
+    }
+    else{
+        removeAll(callback);
+    }
 };

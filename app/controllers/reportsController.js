@@ -191,3 +191,52 @@ exports.find = function (req, res, next) {
         });
     });
 };
+
+var deleteForeignKey = function(condition){
+    ExpensesModel.find(condition).exec(function(err, res){
+        if(!err){
+            res.forEach(function(expense){
+                expense.reportId = undefined;
+                expense.save();
+            });
+        }
+        else{
+            console.log("Cascade update error");
+        }
+    });
+};
+
+var remove = function (id, callback) {
+    deleteForeignKey({ reportId: id });
+
+    ReportsModel.find({ _id: id })
+        .remove(function(err){
+            callback(err, "Report removed: " + id);
+        });
+};
+
+var removeAll = function(callback){
+    deleteForeignKey({});
+    ReportsModel.remove({}, function(err){
+        callback(err, "Reports collection removed");
+    });
+};
+
+exports.delete = function(req, res, next){
+    var callback = function(err, msg){
+        if (!err) {
+            console.log(msg);
+            res.status(204);
+            res.send();
+        } else {
+            next(new Error(err));
+        }
+    };
+
+    if(req.query.id){
+        remove(req.query.id, callback);
+    }
+    else{
+        removeAll(callback);
+    }
+};

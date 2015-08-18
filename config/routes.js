@@ -14,14 +14,13 @@ module.exports = function (app) {
     app.post("/expenses", expenses.create);
     app.get("/expenses", expenses.find);
     app.patch("/expenses", expenses.update);
-    app.delete("/expenses", expenses.remove);
-
-    app.delete("/database", expenses.clearDb);
+    app.delete("/expenses", expenses.delete);
 
     app.post("/reports", reports.create);
     app.get("/reports", reports.find);
     app.get("/reports/getById", reports.findById);
     app.patch("/reports", reports.update);
+    app.delete("/reports", reports.delete);
 
 
     app.post("/reports/assignExpenses", reports.assignExpenses);
