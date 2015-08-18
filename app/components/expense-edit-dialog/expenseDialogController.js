@@ -1,6 +1,7 @@
 angular.module('hpsa-client')
 .controller('NewExpenseCtrl', function($scope, $q, $modalInstance, model, ExpensesService, ReceiptUploader){
         $scope.expense = model.expense;
+        $scope.expense.date = new Date(Date.parse(model.expense.date));
         $scope.isNew = model.isNew;
 
         $scope.title = model.isNew ? "New Expense" : "Edit Expense";
@@ -8,7 +9,6 @@ angular.module('hpsa-client')
         $scope.datepicker = {
             opened: false
         };
-        $scope.maxDate = new Date();
         $scope.receiptRaw = {};
         $scope.submitFailedMessage = "";
 
@@ -44,15 +44,17 @@ angular.module('hpsa-client')
         };
 
         $scope.save = function(){
+            var expense = null;
             uploadImg().
                 then(function(){
-                    var expense = $scope.expense;
-                    expense.amount = expense.amount.replace(',', '');
+                    expense = angular.copy($scope.expense);
+                    expense.amount = parseFloat(expense.amount.replace(',', ''));
                     return ExpensesService.save(expense);
                 }).
                 then(function(){
                     console.log("save receipt succeed");
                     $modalInstance.close();
+                    $scope.expense.amount = expense.amount;
                 }, function(error){
                     $scope.submitFailedMessage = error;
                     console.log("save expense failed");
