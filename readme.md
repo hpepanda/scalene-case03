@@ -1,7 +1,23 @@
-Api
+#Api
 
-Expenses
+##Expenses
 
-Remove
-Method: DELETE
-http://demo-hp-api-2.15.126.134.149.xip.io/expenses?expenseId={expanse id}
+###Remove by id
+Method: DELETE  
+http://demo-hp-api.15.126.193.39.xip.io/expenses?id={expanse id}
+
+###Remove all
+Method: DELETE  
+http://demo-hp-api.15.126.193.39.xip.io/expenses
+
+##Reports
+
+###Remove by id
+Method: DELETE  
+http://demo-hp-api.15.126.193.39.xip.io/reports?id={report id}
+
+###Remove all
+Method: DELETE  
+http://demo-hp-api.15.126.193.39.xip.io/reports
+
+
