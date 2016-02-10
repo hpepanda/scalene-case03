@@ -1,8 +1,11 @@
 "use strict";
 
-var expenses = require("expensesController");
-var reports = require("reportsController");
-var objectStorage = require("objectStorageController");
+var use = require('use-import');
+var config = use("config");
+var expenses = use("expensesController");
+var reports = use("reportsController");
+var objectStorage = use("objectStorageController");
+var localStorage = use("localStorageController");
 
 module.exports = function (app) {
 
@@ -25,8 +28,15 @@ module.exports = function (app) {
 
     app.post("/reports/assignExpenses", reports.assignExpenses);
 
-    app.post("/image", objectStorage.uploadImage);
-    app.post("/image64", objectStorage.uploadImageBase64);
+    if (process.env.USE_LOCAL_STORAGE && config.imageServerUri) {
+        console.log("switched to local storage");
+        app.post("/image", localStorage.uploadImage);
+        app.post("/image64", localStorage.uploadImageBase64);
+        app.get("/image", localStorage.getImage);
+    } else {
+        app.post("/image", objectStorage.uploadImage);
+        app.post("/image64", objectStorage.uploadImageBase64);
+    }
 
     /// catch 404 and forwarding to error handler
     app.use(function (req, res) {

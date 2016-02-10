@@ -8,5 +8,6 @@ module.exports = {
     redis: {
         uri: process.env.REDIS_URL,
         ttl: 20
-    }
+    },
+    imageServerUri: process.env.IMAGE_SERVER_URL
 };

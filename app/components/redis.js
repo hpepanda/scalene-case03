@@ -1,8 +1,20 @@
 "use strict";
 
-var config = require("config");
+var use = require('use-import');
+var config = use("config");
 var redis = require("redis");
-var redisClient = redis.createClient(config.redis.port, config.redis.host, {auth_pass: config.redis.password});
+
+function createRedis() {
+    if(config.redis.port && config.redis.host) {
+        return redis.createClient(config.redis.port, config.redis.host, {auth_pass: config.redis.password});
+    } else if (config.redis.uri) {
+        return redis.createClient(config.redis.uri);
+    } else {
+        return redis.createClient("redis://localhost:6379");
+    }
+}
+
+var redisClient = createRedis();
 
 redisClient.auth(config.redis.password, function (err) {
     if (err) {
@@ -37,28 +49,37 @@ exports.updateCache = function (key, value) {
 };
 
 exports.restoreFromCache = function (req, res, callback) {
-    redisClient.get(req.url, function (redisError, reply) {
-        if (!redisError && reply) {
-            res.set("HP-Cache", true);
-            res.set("Content-Type", "application/json; charset=utf-8");
-            // Cached status code
-            //res.status(304);
-            res.send(decodeURIComponent(reply));
-        } else {
-            if (redisError) {
-                console.log("redis cache error: " + redisError);
+    if(redisClient.ready) {
+        redisClient.get(req.url, function (redisError, reply) {
+            if (!redisError && reply) {
+                res.set("HP-Cache", true);
+                res.set("Content-Type", "application/json; charset=utf-8");
+                // Cached status code
+                //res.status(304);
+                res.send(decodeURIComponent(reply));
+            } else {
+                if (redisError) {
+                    console.log("redis cache error: " + redisError);
+                }
+                callback();
             }
-            callback();
-        }
-    });
+        });
+    } else {
+        console.log("redis is not ready");
+        callback();
+    }
 };
 
 exports.delWildcard = function(key, callback){
     redisClient.keys(key, function(err, rows){
-        rows.forEach(function(r){
-            redisClient.del(r);
-        });
-        callback();
+        if(!err) {
+            rows.forEach(function (r) {
+                redisClient.del(r);
+            });
+            callback();
+        } else {
+            callback();
+        }
     });
 };
 

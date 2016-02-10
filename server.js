@@ -1,7 +1,9 @@
 "use strict";
 
+var use = require('use-import').load();
+var config = use("config");
+
 var express = require("express");
-var config = require("config");
 var expenses = require("./app/models/expenses");
 var reports = require("./app/models/reports");
 var redis = require("./app/components/redis");

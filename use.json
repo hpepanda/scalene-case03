@@ -1,0 +1,7 @@
+{
+  "config": "./config/config.js",
+  "expensesController": "./app/controllers/expensesController.js",
+  "localStorageController": "./app/controllers/localStorageController.js",
+  "objectStorageController": "./app/controllers/objectStorageController.js",
+  "reportsController": "./app/controllers/reportsController.js"
+}
