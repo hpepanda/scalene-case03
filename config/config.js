@@ -38,6 +38,14 @@ if (process.env.VCAP_SERVICES) {
     }
 }
 
+if (process.env.VCAP_APPLICATION) {
+    var application = JSON.parse(process.env.VCAP_APPLICATION);
+    if(application && application.uris && application.uris.length > 0) {
+        defaults.imageServerUri = "http://" + application.uris[0] + "/image";
+        console.log("imageServerUri loaded from VCAP_APPLICATION");
+    }
+}
+
 module.exports = {
     development: extend(development, defaults),
     production: extend(production, defaults)
