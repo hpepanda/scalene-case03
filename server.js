@@ -6,6 +6,7 @@ var config = use("config");
 var express = require("express");
 var expenses = require("./app/models/expenses");
 var reports = require("./app/models/reports");
+var databaseStorage = require("./app/models/databaseStorage");
 var redis = require("./app/components/redis");
 var mongoose = require("mongoose");
 

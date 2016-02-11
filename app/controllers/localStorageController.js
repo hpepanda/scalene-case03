@@ -1,7 +1,8 @@
 /**
  * Created by ashemyakin on 2/10/2016.
  */
-var server = "http://localhost:8020/image";
+var use = require('use-import');
+var config = use("config");
 var request = require('request');
 var path = require('path');
 var fs = require('fs');
@@ -27,7 +28,7 @@ exports.uploadImage = function (req, res, next) {
         }
         console.log('File saved.');
         res.status(201);
-        res.send({ imageUri: server + "?file=" + uuid });
+        res.send({ imageUri: config.imageServerUri + "?file=" + uuid });
     })
 };
 
@@ -42,10 +43,10 @@ exports.uploadImageBase64 = function (req, res, next) {
         }
         console.log('File saved.');
         res.status(201);
-        res.send({ imageUri: server + "?file=" + uuid });
+        res.send({ imageUri: config.imageServerUri + "?file=" + uuid });
     });
 };
 
 exports.getImage = function(req, res) {
-    res.sendFile(req.query.file, { root: path.join(__dirname, '../../images') });
+    res.sendFile(req.query.file, { root: path.join(config.storageRootDir, './images') });
 };

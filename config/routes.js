@@ -6,6 +6,7 @@ var expenses = use("expensesController");
 var reports = use("reportsController");
 var objectStorage = use("objectStorageController");
 var localStorage = use("localStorageController");
+var databaseStorageController = use("databaseStorageController");
 
 module.exports = function (app) {
 
@@ -28,6 +29,12 @@ module.exports = function (app) {
 
     app.post("/reports/assignExpenses", reports.assignExpenses);
 
+    if(process.env.USE_DB_STORAGE && config.imageServerUri) {
+        console.log("switched to database storage");
+        app.post("/image", databaseStorageController.uploadImage);
+        app.post("/image64", databaseStorageController.uploadImageBase64);
+        app.get("/image", databaseStorageController.getImage);
+    }
     if (process.env.USE_LOCAL_STORAGE && config.imageServerUri) {
         console.log("switched to local storage");
         app.post("/image", localStorage.uploadImage);

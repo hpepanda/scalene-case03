@@ -18,8 +18,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "start": "node server.js",
-    "start_windows": "set USE_LOCAL_STORAGE=true&&set IMAGE_SERVER_URL='http://192.168.100.21/image'&&node server.js"
+    "start": "node server.js"
   },
   "keywords": [
     "hp",
