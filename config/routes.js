@@ -7,6 +7,7 @@ var reports = use("reportsController");
 var objectStorage = use("objectStorageController");
 var localStorage = use("localStorageController");
 var databaseStorageController = use("databaseStorageController");
+var statisticsController = use("statisticsController");
 
 module.exports = function (app) {
 
@@ -44,6 +45,8 @@ module.exports = function (app) {
         app.post("/image", objectStorage.uploadImage);
         app.post("/image64", objectStorage.uploadImageBase64);
     }
+
+    app.get("/statistics", statisticsController.getData);
 
     /// catch 404 and forwarding to error handler
     app.use(function (req, res) {
