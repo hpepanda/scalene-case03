@@ -14,11 +14,13 @@
     "request": "^2.57.0",
     "ip": "^0.3.3",
     "busboy-body-parser": "^0.0.9",
-    "async": "^1.2.1"
+    "async": "^1.2.1",
+    "moment": "^2.11.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-    "start": "node server.js"
+    "start": "node server.js",
+	"start_windows": "set USE_LOCAL_STORAGE=true&&set VCAP_APPLICATION={\"uris\":[\"expense-api2.ec2.stacktest.io\"]}&&node server.js"
   },
   "keywords": [
     "hp",
