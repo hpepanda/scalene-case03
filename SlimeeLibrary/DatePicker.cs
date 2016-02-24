@@ -160,6 +160,8 @@ namespace SlimeeLibrary
             this.Height = Unit.Empty; // Reset base control height.
             textBox.Style["padding"] = "0px";
             textBox.Style["margin"] = "0px";
+            textBox.Style["font-family"] = "OpenSansLight";
+            textBox.Style["font-size"] = "14px";
 
             textBoxCell = new TableCell();
             textBoxCell.HorizontalAlign = HorizontalAlign.Left;

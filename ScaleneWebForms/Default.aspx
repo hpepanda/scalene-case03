@@ -17,7 +17,7 @@
     </p>
     <div>
         <table>
-            <tr>
+            <tr style="font-family: OpenSansLight;">
                 <td class="date-table">From:</td>
                 <td class="date-table" >
                     <cc1:DatePicker ID="DatePickerFrom" runat="server" AutoPostBack="true" OnSelectedDateChanged="DatePickerFrom_OnSelectedDateChanged"
@@ -55,8 +55,6 @@
                 </td>
             </tr>
         </table>
-
-
     </div>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -68,8 +66,8 @@
                     <ItemTemplate>
                         <table class="stat-table">
                             <tr>
-                                <td class="stat-td"><%# Eval("Key") %>:</td>
-                                <td class="stat-td"><%# Eval("Value") %></td>
+                                <td <%# Container.ItemIndex == ((IList)((Repeater)Container.Parent).DataSource).Count-1 ? " class='stat-td-last'" : "class='stat-td'"%>><%# Eval("Key") %>:</td>
+                                <td <%# Container.ItemIndex == ((IList)((Repeater)Container.Parent).DataSource).Count-1 ? " class='stat-td-last'" : "class='stat-td'"%>><%# Eval("Value") %></td>
                             </tr>
                         </table>
                     </ItemTemplate>

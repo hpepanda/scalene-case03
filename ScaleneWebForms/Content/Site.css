@@ -216,6 +216,13 @@ ul#menu {
   url('../content/fonts/OpenSansLight.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: OpenSansRegular;
+  src: url('../content/fonts/OpenSans-Regular.ttf') format('truetype'),
+  url('../content/fonts/OpenSansRegular.woff') format('woff'),
+  url('../content/fonts/OpenSansRegular.woff2') format('woff2');
+}
+
 .scalene-subtitle {
 
     font-size: 72px;
@@ -333,6 +340,13 @@ aside {
 
 .stat-td {
     font-family: OpenSansLight;
+    color: black;
+    font-size: 18px;
+    width: 250px;
+}
+
+.stat-td-last {
+    font-family: OpenSansRegular;
     color: black;
     font-size: 18px;
     width: 250px;
