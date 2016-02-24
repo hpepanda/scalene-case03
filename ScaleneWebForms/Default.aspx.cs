@@ -45,7 +45,22 @@ namespace ScaleneWebForms
                     using (var reader = new StreamReader(responseStream))
                     {
                         JArray json = JArray.Parse(reader.ReadToEnd());
-                        repStatistics.DataSource = json.ToObject<List<KeyValuePair<string, string>>>();
+                        var responseList = json.ToObject<List<KeyValuePair<string, string>>>();
+                        var lastItem = responseList.Last();
+                        if (lastItem.Key == "Total amount")
+                        {
+                            responseList.Remove(lastItem);
+                            var currency = "$ 0";
+                            if (lastItem.Value != "0$" )
+                            {
+                                currency = "$ " + lastItem.Value.Split(' ')[0];
+                            }
+
+                            responseList.Add(new KeyValuePair<string, string>("Period totals", currency));
+                        }
+
+
+                        repStatistics.DataSource = responseList;
                         repStatistics.DataBind();
                     }
                 }
