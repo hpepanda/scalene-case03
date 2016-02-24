@@ -79,9 +79,9 @@ var getTotalAmount = function(startDate, endDate) {
 };
 
 function formatCurrency(n, currency) {
-    return n.toFixed(2).replace(/./g, function(c, i, a) {
+    return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
             return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
-        }) + " " + currency;
+        });
 }
 
 
@@ -136,13 +136,13 @@ exports.getData = function(req, res, next) {
     }).then(function (totalAmount) {
         if(totalAmount.length > 0) {
             result.push({
-                "Key": "Total amount",
+                "Key": "Period totals",
                 "Value": formatCurrency(totalAmount[0].count, "$")
             });
         } else {
             result.push({
-                "Key": "Total amount",
-                "Value": "0 $"
+                "Key": "Period totals",
+                "Value": "$ 0"
             });
         }
     }).then(function() {
