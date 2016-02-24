@@ -687,6 +687,7 @@ footer {
     .content-wrapper {
         padding-right: 10px;
         padding-left: 10px;
+        margin-left: 20px;
     }
 
     .featured .content-wrapper {
