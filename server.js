@@ -9,11 +9,15 @@ var reports = require("./app/models/reports");
 var databaseStorage = require("./app/models/databaseStorage");
 var redis = require("./app/components/redis");
 var mongoose = require("mongoose");
+var initializer = require("./dbdata/initializer");
 
 var app = express();
 var port = config.port;
 
 console.log("server configuration: " + JSON.stringify(config));
+
+console.log("initializing db if necessary");
+initializer.initializeDB(config.imageServerUri, config.db.uri);
 
 // Connect to mongodb
 var connect = function () {
