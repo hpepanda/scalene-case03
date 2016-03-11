@@ -11,7 +11,8 @@ angular.module('hpsa-client').factory('RequestProfiler', ['$q', 'ObservableServi
     var notify = function(){
         ObservableService.notify({
             host: requestState.url,
-            duration: requestState.finish - requestState.start
+            duration: requestState.finish - requestState.start,
+            provider: requestState.provider
         });
     };
 
@@ -27,6 +28,7 @@ angular.module('hpsa-client').factory('RequestProfiler', ['$q', 'ObservableServi
     profiler.response = function (response){
         requestState.finish = new Date().getTime();
         requestState.url = response.headers('hp-server');
+        requestState.provider = response.headers('x-provider');
         if(requestState.url){
             notify();
         }
