@@ -17,7 +17,12 @@ var port = config.port;
 console.log("server configuration: " + JSON.stringify(config));
 
 console.log("initializing db if necessary");
-initializer.initializeDB(config.imageServerUri, config.db.uri);
+if (config.imageServerUri && config.imageServerUri.length > 0) {
+    initializer.initializeDB(config.imageServerUri, config.db.uri);
+}
+else {
+    console.log("Skipping init as IMAGE_SERVER_URL is not set");
+}
 
 // Connect to mongodb
 var connect = function () {

@@ -3,6 +3,7 @@ var replaceall  = require("replaceall");
 //-------------------------------------------------------------
 var expenses = require("./expenses.js");
 var reports = require("./reports.js");
+var images = require("./files.js");
 //-------------------------------------------------------------
 
 var initializer = function(){
@@ -20,6 +21,14 @@ var initializer = function(){
 
     var importData = function(db, mongoUrl, imageServerUri) {
         console.log("Connected to server: " + mongoUrl);
+
+        images.forEach(function (item) {
+            db.collection('databasestorages').insertOne(item, function (err, res) {
+                if (err) {
+                    console.log("Error (databasestorages): " + err);
+                }
+            });
+        })
 
         reports.forEach(function (item) {
             db.collection('reports').insertOne(item, function (err, res) {
