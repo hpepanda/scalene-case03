@@ -1,0 +1,4 @@
+applications:
+- name: case-3-net
+  mem: 512M
+  services:

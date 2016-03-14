@@ -68,7 +68,16 @@ namespace ScaleneWebForms
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //serverAddress.Text = "server: " + WebConfigurationManager.AppSettings["CaseServer"];
+            var provider = Environment.GetEnvironmentVariable("Provider");
+            if (provider == null)
+            {
+                provider = WebConfigurationManager.AppSettings["Provider"];
+            }
+
+            if (provider != null)
+            {
+                serverAddress.Text = "provider: " + provider;
+            }
         }
     }
 }

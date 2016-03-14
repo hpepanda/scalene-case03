@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaleneWebForms", "ScaleneWebForms.csproj", "{DD012D65-94AA-4565-9132-787032483720}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C640539D-CFB2-4D69-B66C-0BE25C947D75}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -12,7 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C64053
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimeeLibrary", "..\SlimeeLibrary\SlimeeLibrary.csproj", "{19C678F8-AE96-402A-B2BC-5CC616C4381A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaleneWebForms", "ScaleneWebForms\ScaleneWebForms.csproj", "{DD012D65-94AA-4565-9132-787032483720}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlimeeLibrary", "SlimeeLibrary\SlimeeLibrary.csproj", "{19C678F8-AE96-402A-B2BC-5CC616C4381A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -35,7 +35,13 @@ namespace ScaleneWebForms
         {
             try
             {
-                var server = WebConfigurationManager.AppSettings["CaseServer"];
+                var server = Environment.GetEnvironmentVariable("CaseServer");
+
+                if (server == null)
+                {
+                    server = WebConfigurationManager.AppSettings["CaseServer"];
+                }
+
                 var serverEndpoint = string.Format("{0}?from={1}&to={2}", server, this.DatePickerFrom.SelectedDate.ToString("yyyy-MM-dd"), this.DatePickerTo.SelectedDate.ToString("yyyy-MM-dd"));
                 WebRequest request = WebRequest.Create(serverEndpoint);
                 request.ContentType = "application/json";
