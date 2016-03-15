@@ -1,15 +1,24 @@
 {
-  "name": "mongoimport",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Serge Levin",
-  "license": "ISC",
+  "name": "HP-case3-server",
+  "version": "1.1.12",
+  "description": "hp example server",
+  "private": true,
   "dependencies": {
+    "use-import": "^0.1.2",
     "mongodb": "^2.1.7",
     "replaceall": "^0.1.6"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "hp",
+    "demo",
+    "redis",
+    "mongodb"
+  ],
+  "author": "hp-demo",
+  "engines": {
+    "node": "0.12.x"
   }
 }
