@@ -6,5 +6,6 @@ app.controller('RequestProfilerCtrl', ['$scope', '$location', 'RequestProfiler',
     RequestProfiler.onResponseReceived(function(state){
         $scope.serverName = state.host;
         $scope.totalDuration = state.duration;
+        $scope.providerName = state.provider;
     });
 }]);
