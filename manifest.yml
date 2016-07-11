@@ -1,0 +1,10 @@
+applications:
+- name: case-3-python
+  memory: 128M
+  env:
+    MYSQL_HOST: "localhost"
+    MYSQL_DB: "case3mysql"
+    MYSQL_PORT: "3306"
+    MYSQL_USER: "root"
+    MYSQL_PASS: "root"
+    PROVIDER: "stackato_python"
