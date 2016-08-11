@@ -8,19 +8,19 @@ MEAN version of "Scalene Expense Manager" application available for deploying in
 Branch name: ***server***
 
 ####Deploy instructions
-1. stackto target
-2. stackato login
-3. stackato push
+1. `stackto target`
+2. `stackato login`
+3. `stackato push`
 
-##Scalene client
+###Scalene client
 Branch name: ***ui***
 
 ####Deploy instructions
-1. stackto target
-2. stackato login
-3. stackato push --no-prompt --env SERVER_URI='[scalene-server-uri]'
+1. `stackto target`
+2. `stackato login`
+3. `stackato push --no-prompt --env SERVER_URI='[scalene-server-uri]'`
 
-##Scalene mobile
+###Scalene mobile
 Branch name: ***mobile***
 
 Node.js application representing how Scalene Expense Manager can be implemented for mobile phones.
@@ -30,7 +30,7 @@ Node.js application representing how Scalene Expense Manager can be implemented 
 1. Use "PROVIDER" environment variable to configure provider title
 2. Push to stackato.
 
-##DB data
+###DB data
 Branch name: ***dbdata***
 
 Application that populates Scalene db with data.
@@ -43,7 +43,7 @@ Application that populates Scalene db with data.
 5. Server will connect to mongo and deploy data
 6. Delete dbdata server from stackato
 
-##Scalene .NET
+###Scalene .NET
 Branch name: ***net***
 
 Demo showing how to deploy and run .net applications in stackato.
@@ -51,12 +51,12 @@ Demo showing how to deploy and run .net applications in stackato.
 ####Deploy instructions
 
 1. Go to the PublicBinaries folder.
-2. Run "stackato push -n --stack win2012r2 --buildpack dotnet"
+2. Run `stackato push -n --stack win2012r2 --buildpack dotnet`
 3. Use "Provider" environment variable to configure provider title
 4. Use "CaseServer" to specify the back-end server
 5. All configuration parameters are available in the web.config file
 
-##Scalene Python
+###Scalene Python
 Branch name: ***python***
 
 ####Deploy instructions
