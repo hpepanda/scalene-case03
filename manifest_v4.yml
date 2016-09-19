@@ -1,0 +1,8 @@
+applications:
+- name: scalene-frontend
+  mem: 128M
+  env:
+    SERVER_URI: 'http://scalene-backend.hcf.shapeyourcloud.com/'
+  stackato:
+    ignores:
+    - node_modules
