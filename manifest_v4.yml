@@ -1,0 +1,8 @@
+applications:
+- name: scalene-mobile
+  mem: 128M
+  env:
+      PROVIDER: 'Stackato 4'
+  stackato:
+    ignores:
+    - node_modules
