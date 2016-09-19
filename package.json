@@ -4,33 +4,24 @@
   "description": "hp example server",
   "private": true,
   "dependencies": {
-    "express": "^4.12.3",
+    "express": "^4.14.0",
     "use-import": "^0.1.2",
     "body-parser": "^1.12.4",
-    "redis": "*",
-    "mongoose": "4.0.1",
+    "mongoose": "4.6.0",
     "morgan": "1.5.3",
     "request": "^2.57.0",
     "ip": "^0.3.3",
     "busboy-body-parser": "^0.0.9",
     "async": "^1.2.1",
     "moment": "^2.11.2",
-    "mongodb": "^2.1.7",
-    "replaceall": "^0.1.6"
+    "replaceall": "^0.1.6",
+    "bluebird": "3.4.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
     "start": "node server.js",
 	"start_windows": "set USE_LOCAL_STORAGE=true&&set VCAP_APPLICATION={\"uris\":[\"expense-api2.ec2.stacktest.io\"]}&&node server.js"
   },
-  "keywords": [
-    "hp",
-    "demo",
-    "redis",
-    "mongodb"
-  ],
-  "author": "hp-demo",
   "engines": {
-    "node": "0.12.x"
+    "node": "4.x.x"
   }
 }

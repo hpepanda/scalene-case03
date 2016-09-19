@@ -1,0 +1,11 @@
+applications:
+- name: scalene-backend
+  mem: 128M
+  services:
+    - case-3-mongodb
+  env:
+     USE_DB_STORAGE: true
+     PROVIDER: 'Stackato 4'
+  stackato:
+    ignores:
+    - node_modules

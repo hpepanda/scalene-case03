@@ -15,16 +15,16 @@ if (process.env.VCAP_SERVICES) {
     if (services) {
         if (services["mongodb"]) {
             services["mongodb"].forEach(function (entry) {
-                if (entry.name === (process.env.STACKATO_APP_NAME + "-mongo-db")) {
+                if (entry.name === "case-3-mongodb") {
                     defaults.db = {
-                        uri: entry.credentials.uri
+                        uri: entry.credentials.uri.replace(";", "?3t.connection.name=stackato+4&3t.uriVersion=2&3t.connectionMode=direct&readPreference=primary")
                     }
                 }
             });
         }
         if (services["redis"]) {
             services["redis"].forEach(function (entry) {
-                if (entry.name === (process.env.STACKATO_APP_NAME + "-redis-db")) {
+                if (entry.name === "case-3-redis") {
                     defaults.redis = {
                         uri: entry.credentials.uri,
                         host: entry.credentials.host,
@@ -49,4 +49,4 @@ if (process.env.VCAP_APPLICATION) {
 module.exports = {
     development: extend(development, defaults),
     production: extend(production, defaults)
-}[process.env.NODE_ENV || 'development'];
+}['production'];

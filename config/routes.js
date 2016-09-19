@@ -20,6 +20,7 @@ module.exports = function (app) {
     app.get("/expenses", expenses.find);
     app.patch("/expenses", expenses.update);
     app.delete("/expenses", expenses.delete);
+    app.get("/expenses/preload", expenses.preload);
 
     app.post("/reports", reports.create);
     app.get("/reports", reports.find);
@@ -36,7 +37,7 @@ module.exports = function (app) {
         app.post("/image64", databaseStorageController.uploadImageBase64);
         app.get("/image", databaseStorageController.getImage);
     }
-    if (process.env.USE_LOCAL_STORAGE && config.imageServerUri) {
+/*    if (process.env.USE_LOCAL_STORAGE && config.imageServerUri) {
         console.log("switched to local storage");
         app.post("/image", localStorage.uploadImage);
         app.post("/image64", localStorage.uploadImageBase64);
@@ -44,7 +45,7 @@ module.exports = function (app) {
     } else {
         app.post("/image", objectStorage.uploadImage);
         app.post("/image64", objectStorage.uploadImageBase64);
-    }
+    }*/
 
     app.get("/statistics", statisticsController.getData);
 
