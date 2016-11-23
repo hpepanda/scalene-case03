@@ -1,11 +1,7 @@
----
-# We have created a temporary app in the gallery
-# We have created a delivery pipeline
 applications:
-# We have reserved a name/route for your app
-- name: case3
-  host: case3
+- name: case3-ui
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  memory: 64M
+  stack: cflinuxfs2
+  host: node-chat
   domain: hcf.shapeyourcloud.com
-  # We have provisioned and bound services
-  services:
-  - instance1
